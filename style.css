@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&display=swap');
 .attribution {
     font-size: 11px;
     text-align: center;
@@ -31,23 +32,45 @@
 
 body{
     min-height: 100vh;
+    font-family: 'Josefin Sans', sans-serif;
 }
 .hero{
     display: grid;
-    grid-template-columns: 60% 40%;
+    background: url("images/bg-pattern-desktop.svg");
+    background-size: contain;
+    grid-template-rows: 7em auto;
+    grid-template-areas: 
+    "header image"
+    "wrapper image"
+    "attribution attribution"
 }
 .hero__wrapper{
-    margin: 2em 6em;
+    padding: 2em 6em;
+    grid-area: wrapper;
 }
-.wrapper__header{
-    margin: 0 0 4em;
+.hero__header{
+    padding: 2em 0 0 6em;
+    grid-area: header;
+}
+.hero__img{
+    grid-area: image;
+    width: 400px;
+    height: 100vh;
+}
+.attribution{
+    grid-area: attribution ;
 }
 .wrapper__title{
     font-size: 4em;
-    
+    margin-right: 1em;
+    text-transform: uppercase;
+    letter-spacing: .2em;
+    color: var(--Dark-Grayish-Red);
 }
 .title__black-bold{
     display: block;
+    font-weight: 300;
+    color: var(--Desaturated-Red);
 }
 .wrapper__paragraph{
     line-height: 1.5em;
@@ -67,8 +90,15 @@ body{
 .wrapper__email::placeholder{
     color: var(--Desaturated-Red);
 }
-.wrapper__email:focus-within{
-    border: 1px solid var(--Soft-Red);
+.wrapper__email:focus{
+    outline: 2px solid var(--Soft-Red);
+}
+.error__img{
+    position: absolute;
+    transition: .5s ease;
+    display: none;
+    top: 10px;
+    right: 6em;
 }
 .email__button{
     top: 0;
@@ -88,10 +118,54 @@ body{
     transform: scale(1.1);
     transition: .2s ease;
 }
+.warning{
+    display: none;
+    transition: .5s ease;
+    margin-top: .5em;
+    margin-left: 1em;
+    color: var(--Soft-Red);
+}
 .hero__img-mobile{
     display: none;
 }
-.hero__img{
-    /* height: 100vh;
-    width: inherit; */
+@media (max-width:900px){
+    .hero__img{}
+}
+@media (max-width: 500px){
+    .hero{
+        display: grid;
+        background: none;
+        grid-template-areas: 
+        "header"
+        "image"
+        "wrapper"
+    }
+    .hero__wrapper{
+        margin: 0;
+        text-align: center;
+        padding: 3em 2em;
+        grid-area: wrapper;
+    }
+    .hero__header{
+        margin: 0;
+        grid-area: header;
+        padding: 2em;
+    }
+    .hero__img-mobile{
+        grid-area: image;
+        display: block;
+        width: 100%;
+        padding: 0;
+    }
+    .hero__img{
+        display: none;
+    }
+    .email__button{
+        height: 42px;
+        width: 4.5em;
+        right: 1.5em;
+    }
+    .warning{
+        margin-left: -1em;
+    }
 }
